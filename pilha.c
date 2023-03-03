@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio2.h>
-#include "tad1.h"
+#include "tadPilha.h"
 
 char menu(){
 	system("cls");
@@ -31,7 +31,8 @@ int main(){
 				push(&p,aux);
 			break;
 			case 'B':
-				pop(&p);
+				scanf("%d", &aux);
+				pop(&p, &aux);
 			break;
 
 			case 'C':

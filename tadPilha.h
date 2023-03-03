@@ -10,33 +10,42 @@ struct Pilha
 };
 typedef struct Pilha pilha;
 
+int isEmpety(pilha *inicio){
+	return inicio == NULL;
+}
+
 void init(pilha **inicio){
 		*inicio = NULL;
 }
 
 void push(pilha **inicio , int aux){
     pilha *novo = (pilha*) malloc(sizeof(pilha));
-    novo->info = aux;
+    
+	novo->info = aux;
     novo->prox = *inicio;
-    *inicio = novo;
+	*inicio = novo;
+
 }
 
-void pop(pilha **inicio){
+void pop(pilha **inicio, int *info){
 	pilha *aux = *inicio;
 	
-	if(*inicio!=NULL){
-		aux = aux->prox;
-		*inicio = aux;	
-	}	
+	if(!isEmpety(*inicio)){
+		
+		*info = (*inicio)->info;
+		*inicio = (*inicio)->prox;
+		free(aux);	
+	}
+	else{
+		*info = -1;
+	}
 }
 
 int top(pilha *inicio){
 	return inicio->info;
 }
 
-int isEmpety(pilha *inicio){
-	return inicio == NULL;
-}
+
 
 void exibe(pilha *inicio){
     system("cls");
